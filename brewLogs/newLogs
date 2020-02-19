@@ -1,0 +1,47 @@
+#! /bin/bash
+
+# First, unzip the exported data from Acaia
+file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
+echo
+unzip $file
+newFile=${file%.zip}.csv
+echo 
+echo "Moving $newFile to brewmaster.csv"
+mv ${file%.zip}.csv brewmaster.csv
+echo
+
+# This displays the first column of our unzipped file. It is a bit of a mess, but it 
+# gets the job done..Look for the brew name you used when saving <name> in the Brewmaster
+# app
+echo -e $( grep \" -i brewmaster.csv | awk '{print $1}' )
+echo
+read -p "Please type a string common to each brew you want to write data for: " chosenBrew
+echo
+
+read -p "You Wrote '$chosenBrew'... Is That Correct? (y/n): " cont
+if [ $cont == "y" ]
+then
+	# Extract only the brews we want matching the string entered in chosenBrew
+	brewNames=$( grep \"$chosenBrew -i brewmaster.csv )
+	echo
+	read -p "Please enter the filename for this data (excluding file extention): " newBrewDataFile
+	# Write this data into a new, separate file
+	echo -e $brewNames > $newBrewDataFile.csv
+	echo
+	# Auto formats each brew onto a new line, otherwise the data comes out as one long line regardless
+	# how many brews you have matching the given string.
+	echo "Auto-formatting $newBrewDataFile.csv file..."
+	sed -i "s/\"*\"\,\"$chosenBrew*/\n\"$chosenBrew/g" $newBrewDataFile.csv
+	sed -i 1,1d $newBrewDataFile.csv
+
+	echo
+	echo "You may now run brewAnalysis.py"
+	echo
+else
+	# If you messed up, enter anything buy 'y' when prompted if things are correct
+	# to exit this script.
+	echo
+	echo Please Run This Script Again...
+	echo
+fi
+# Your new file can now be read in correctly by brewAnalysis.py

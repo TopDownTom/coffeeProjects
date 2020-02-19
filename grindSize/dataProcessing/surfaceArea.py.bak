@@ -1,0 +1,228 @@
+import time
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import csv
+from scipy import stats as stats
+
+import attainableMass
+
+
+def posNegError(data):
+    #Method to calculate attainable mass
+#    def attainable_mass_simulate(volumes):
+#            
+#            #This could be done better analytically
+#            depth_limit = 0.1 #mm
+#            
+#            radii = (3.0/4.0*volumes/np.pi)**(1/3)
+#            unreachable_volumes = np.full(volumes.size, 0.0)
+#            
+#            iboulders = np.where(radii > depth_limit)
+#            unreachable_volumes[iboulders[0]] = 4.0/3.0*np.pi*(radii[iboulders[0]] - depth_limit)**3
+#            reachable_volumes = volumes - unreachable_volumes
+#            
+#            return reachable_volumes
+#
+#    def weighted_stddev(data, weights, frequency=False, unbiased=True):
+#            
+#            #Calculate the bias correction estimator
+#            if unbiased is True:
+#                    if frequency is True:
+#                            bias_estimator = (np.nansum(weights) - 1.0)/np.nansum(weights)
+#                    else:
+#                            bias_estimator = 1.0 - (np.nansum(weights**2))/(np.nansum(weights)**2)
+#            else:
+#                    bias_estimator = 1.0
+#
+#            bias_estimator = 1.0
+#            
+#            #Normalize weights
+#            weights /= np.nansum(weights)
+#            
+#            #Calculate weighted average
+#            wmean = np.nansum(data*weights)
+#            
+#            #Deviations from average
+#            deviations = data - wmean
+#            
+#            #Un-biased weighted variance
+#            wvar = np.nansum(deviations**2*weights)/bias_estimator
+#            
+#            #Un-biased weighted standard deviation
+#            wstddev = np.sqrt(wvar)
+#            
+#            return wstddev
+
+    #def standardDev(surfaces,surfaces_average):
+    #    
+    ##    variance = (surfaces-surfaces_average)**2
+    #    
+    #    sum = 0
+    #    for a in range(len(surfaces)):
+    #        sum += (surfaces[a]-surfaces_average)**2
+    #
+    #    sum /= len(surfaces)
+    #    return np.sqrt(sum)
+    #
+    #def weightedAvg(data,weights):
+    #    weightedData = 0
+    #    surf = 0
+    #    weightedArray=[]
+    #    surfacesArray=[]
+    #    for a in range(len(surfaces)):
+    #        weightedData += data[a]*weights[a]
+    #        surf += data[a]
+    #        weightedArray.append(weightedData)
+    #        surfacesArray.append(surf/1e4)
+    #    return weightedData/np.sum(weights),np.array(weightedArray),surfacesArray
+    #
+    #
+
+    ## ID, surface, roundness, shortaxis, longaxis, volume, pixelscale
+    #data = np.array(pd.read_csv("setting5.csv"))
+    #data = pd.read_csv("setting5.csv")
+    #data = pd.read_csv("../ek43Calibration/postAdjustmentData/setting3.csv")
+#    dArray = np.array(data)
+    #nclusters = len(dArray[:,0])
+#    pixel_scale = dArray[:,6] 
+    pixel_scale = data[:,6]
+    coffee_cell_size=20
+    default_binsize = .1
+    default_log_binsize = .05
+    default_bin_inflate = 1
+    hist_color=[147, 36, 30]
+    #
+    ## line 2742
+    #
+#    surfaces = dArray[:,1]/pixel_scale**2
+#    volumes = dArray[:,5]/pixel_scale**3
+    surfaces = data[:,1]/pixel_scale**2
+    volumes = data[:,5]/pixel_scale**3
+    #attainable_masses = attainable_mass_simulate(volumes)
+    attainable_masses = attainableMass.attainable_mass_simulate(volumes)
+    weights = np.maximum(np.ceil(attainable_masses/(coffee_cell_size/1e3)**3),1)
+    data_weights = surfaces
+    #data_weights = data
+    #scaledSurfaces = surfaces/10
+    surfaces_average = np.sum(surfaces*weights)/np.sum(weights)
+    #print(surfaces_average)
+#    surfaces_stddev = weighted_stddev(surfaces,weights,frequency=True,unbiased=True)
+    surfaces_stddev = attainableMass.weighted_stddev(surfaces,weights,frequency=True,unbiased=True)
+    #print(surfaces_stddev)
+    ##quality = surfaces_average/surfaces_stddev
+    #val1,val2,val3=weightedAvg(surfaces,weights)
+    #val4=surfaces*weights*100
+    #log = np.logspace(0,.01,len(surfaces))
+    #
+    ##plt.plot(linear,surfaces/len(surfaces))
+    ##plt.plot(dArray[:,0],val2,label="sum to weighted average",color='red')
+    ##plt.plot(dArray[:,0],val4,label="weighted array data",color='orange')
+    ##plt.plot(dArray[:,0],val3,label="sum to unweighted average",color='black')
+    ##plt.plot(dArray[:,0],scaledSurfaces,label="unweighted array data",color='purple')
+    ##plt.legend()
+    ##plt.show()
+    #
+    ##num_bins = 20
+    #n, bins, patches = plt.hist(val4, num_bins, facecolor='blue', alpha=0.5,label='weighted')
+    ##n, bins, patches = plt.hist(scaledSurfaces, num_bins, facecolor='blue', alpha=0.5,label='unweighted')
+    ##plt.legend()
+    ##plt.show()
+    #
+    ##statistics = stats.describe(surfaces)
+    ##print("skewness of unweighted {}".format(statistics[4]))
+    ##print("kurtosis of unweighted {}".format(statistics[5]))
+    ##print()
+    ##statistics2 = stats.describe(val2)
+    ##print("skewness of weighted {}".format(statistics2[4]))
+    ##print("kurtosis of weighted {}".format(statistics2[5]))
+    #
+    #
+    ##range=np.linspace(np.min(surfaces),np.max(surfaces),len(surfaces))
+    ##plt.scatter(surfaces,range)
+    ##plt.show()
+
+
+    ##### This is stuff for plotting a histogram #####
+    data = surfaces
+
+    #Read x range from internal variables
+    xmin = np.nanmin(data)
+    xmax = np.nanmax(data)
+
+    #Set histogram range
+    histrange = np.array([xmin, xmax])
+
+    #nbins = int(np.ceil( np.log10(float(histrange[1]) - np.log10(histrange[0]))/float(default_log_binsize*default_bin_inflate) ))
+
+    nbins = int(np.ceil( float(histrange[1] - histrange[0])/float(default_binsize*default_bin_inflate) ))
+
+    #Create a list of bins for plotting
+    #    bins_input = np.logspace(np.log10(histrange[0]), np.log10(histrange[1]), nbins)
+    bins_input = np.linspace(histrange[0], histrange[1], nbins)
+
+    #Plot the histogram
+    hist_color_fm = (hist_color[0]/255, hist_color[1]/255, hist_color[2]/255)
+    #    ypdf, xpdfleft, patches = plt.hist(data, bins_input, histtype='bar', color=hist_color_fm, label='hist_label', weights=data_weights/np.nansum(data_weights), density=False, lw=2, rwidth=.8)
+    ypdf, xpdfleft, patches = plt.hist(data, bins_input, histtype='bar', label='hist_label', weights=data_weights/np.nansum(data_weights), density=False, lw=2, rwidth=.8)
+    #Find the value for the center of each bin
+    xpdf = xpdfleft[0:-1] + np.diff(xpdfleft)/2.0
+
+    #Calculate the average weighted by histogram height
+    avg = np.nansum(ypdf*xpdf)/np.nansum(ypdf)
+
+    #Create a cumulative density function (CDF) for the histogram
+    ycdf = np.nancumsum(ypdf)/np.nansum(ypdf)
+
+    #Find out positions of the CDF left and right of the average
+    ileft = np.where(xpdf < avg)
+    iright = np.where(xpdf >= avg)
+
+    #Build an independently normalized CDF on the right side of the average
+    ycdfpos = ycdf[iright[0]] - np.nanmin(ycdf[iright[0]])
+    ycdfpos /= np.nanmax(ycdfpos)
+
+    #Interpolate position that corresponds to 1-sigma positive error bar
+    p1s = 0.68268949
+    avg_plus_epos = np.interp(p1s,ycdfpos,xpdf[iright[0]])
+    epos = avg_plus_epos - avg
+#    print("epos error {}".format(epos))
+
+    #Build an independently normalized CDF on the left side of the average
+    ycdfneg = -ycdf[ileft[0]] - np.nanmin(-ycdf[ileft[0]])
+    ycdfneg /= np.nanmax(ycdfneg)
+
+    #Interpolate position that corresponds to 1-sigma negative error bar
+    avg_min_eneg = np.interp(p1s, np.flip(ycdfneg, axis=0), np.flip(xpdf[ileft[0]], axis=0))
+    eneg = avg - avg_min_eneg
+#    print("eneg error {}".format(eneg))
+
+    #Determine the vertical position where the "average" data point will be plotted
+    ypos_errorbar = np.nanmax(ypdf)*0.05
+
+    #Plot the "average" datapoint
+    xerr = np.array([eneg, epos]).reshape(2, 1)
+    marker = "o"
+    markersize = 8
+    elinewidth = 2
+    capsize = 3
+    capthick = 2
+    serr1 = plt.errorbar(avg, ypos_errorbar, xerr=xerr, marker=marker, markersize=markersize*1.4, linestyle="", color="w", elinewidth=elinewidth+2, capsize=capsize+1, capthick=capthick+1, alpha=0.8, zorder=19)
+
+    serr2 = plt.errorbar(avg, ypos_errorbar, xerr=xerr, marker=marker, markersize=markersize, linestyle="", color=hist_color_fm, elinewidth=elinewidth, ecolor='green', markeredgewidth=1.5, markeredgecolor="k", capsize=capsize, capthick=capthick, zorder=20)
+
+    #print("max is {}".format(np.max(data)))
+    #print("avg to max {}".format(np.max(data)-avg))
+    #print("avg to min {}".format(surfaces_average-np.min(data)))
+    #print("avg is {}".format(np.average(data)))
+    #print("min is {}".format(np.min(data)))
+    #
+    #print("median is {}".format(np.median(data)))
+    #
+    #
+    #stats = stats.describe(surfaces)
+    #print("skewness {}".format(stats[4]))
+    #print("kurtosis {}".format(stats[5]))
+#    plt.show()
+    return epos,eneg
