@@ -8,10 +8,11 @@ import os
 # This script has the basic functionality of overlaying mass vs. time brew plots for multiple brews of the same coffee.
 # More functionality will be added over time.
 
-# Initial list definitions
+# Initial definitions
 dataFiles=[]
 brewDurationSec=[]
 massOverTime=[]
+fig, ax = plt.subplots()
 
 # Find data files in $PWD of .csv filetype
 for file in os.listdir("."):
@@ -45,11 +46,12 @@ for a in range(0,len(brewData)):
     brewDurationSec.append(np.linspace(0,brewTimes,len(brewList)))
 
     # Various plotting definitions
-    plt.xlabel("Time (s)")
-    plt.ylabel("Mass (g)")
-    plt.title("Mass vs. Time - {}".format(dataFiles[userChoice]))
-    plt.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
-    plt.legend()
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Mass (g)")
+    ax.set_title("Mass vs. Time - {}".format(dataFiles[userChoice]))
+    ax.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
+    ax.legend()
 
 # Show the plot
 plt.show()
+fig.savefig(dataFiles[userChoice][:-4])
