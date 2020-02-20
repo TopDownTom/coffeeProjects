@@ -4,10 +4,10 @@
 file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
 echo
 unzip $file
-newFile=$( ls | grep 82713_brewmaster*.csv )
+newCSV=$( ls | grep 82713_brewmaster*.csv )
 echo
-echo "Moving $newFile to brewmaster.csv"
-mv $newFile brewmaster.csv
+echo "Moving $newCSV to brewmaster.csv"
+mv $newCSV brewmaster.csv
 echo
 
 # This displays the first column of our unzipped file. It is a bit of a mess, but it 
@@ -15,31 +15,53 @@ echo
 # app
 echo -e $( grep \" -i brewmaster.csv | awk '{print $1}' )
 echo
-read -p "Please type a string common to each brew you want to write data for: " chosenBrew
+read -p "Please type a string common to each brew you want to write data for: " commonStr
 echo
 
-read -p "You Wrote '$chosenBrew'... Is That Correct? (y/n): " cont
+read -p "You Wrote '$commonStr'... Is That Correct? (y/n): " cont
+
 if [ $cont == "y" ]
 then
 	# Extract only the brews we want matching the string entered in chosenBrew
-	brewNames=$( grep \"$chosenBrew -i brewmaster.csv )
+	chosenBrew=$( grep \"$commonStr -i brewmaster.csv )
+	existingData=($( ls *.csv ))
 	echo
-	read -p "Please enter the filename for this data (excluding file extention): " newBrewDataFile
-	# Write this data into a new, separate file
-	echo -e $brewNames > $newBrewDataFile.csv
-	echo
-	# Auto formats each brew onto a new line, otherwise the data comes out as one long line regardless
-	# how many brews you have matching the given string.
-	echo "Auto-formatting $newBrewDataFile.csv file..."
-	sed -i "s/\"*\"\,\"$chosenBrew*/\n\"$chosenBrew/g" $newBrewDataFile.csv
-	sed -i 1,1d $newBrewDataFile.csv
 
+	# Allow file re-writes if another log was taken using the same coffee
+	echo "Is this a new coffee, or do you want to overwrite an existing file? Please select a number from below: "
+	select choice in "${existingData[@]}" New;
+	do
+		case $choice in
+			New)
+				# If a new file is desired, enter the filename below and write the appropriate contents of 
+				# brewmaster into the new file
+				read -p "Please enter the filename for this data (exclude extention): " brewDataFile
+				echo -e $chosenBrew > $brewDataFile.csv
+				# Sets a variable for sed manipulation later
+				toFormat=$brewDataFile.csv
+				echo
+				break;;
+			*)
+				# Re-Write the appriopriate file to include the new log
+				echo -e $chosenBrew > $choice
+				# Variable for sed manipulation
+				toFormat=$choice
+				echo
+				break;;
+		esac
+	done
+	echo
+
+	# Auto formats each brew onto a new line, otherwise the data comes out as one long line regardless how many brews 
+	# you have matching the given string.
+	echo "Auto-formatting $toFormat file..."
+	sed -i "s/\"*\"\,\"$commonStr*/\n\"$commonStr/g" $toFormat
+	sed -i 1,1d $toFormat
 	echo
 	echo "You may now run brewAnalysis.py"
 	echo
 else
-	# If you messed up, enter anything buy 'y' when prompted if things are correct
-	# to exit this script.
+	# If you messed up, enter anything but 'y' when prompted to exit this script.
 	echo
 	echo Please Run This Script Again...
 	echo
