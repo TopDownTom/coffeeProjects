@@ -49,7 +49,7 @@ for a in range(0,len(brewData)):
     plt.ylabel("Mass (g)")
     plt.title("Mass vs. Time - {}".format(dataFiles[userChoice]))
     plt.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
-#    plt.legend()
+    plt.legend()
 
 # Show the plot
 plt.show()

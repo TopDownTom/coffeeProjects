@@ -4,10 +4,10 @@
 file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
 echo
 unzip $file
-newFile=${file%.zip}.csv
-echo 
+newFile=$( ls | grep 82713_brewmaster*.csv )
+echo
 echo "Moving $newFile to brewmaster.csv"
-mv ${file%.zip}.csv brewmaster.csv
+mv $newFile brewmaster.csv
 echo
 
 # This displays the first column of our unzipped file. It is a bit of a mess, but it 
