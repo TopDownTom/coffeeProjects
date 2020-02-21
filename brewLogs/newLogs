@@ -2,23 +2,31 @@
 
 # First, unzip the exported data from Acaia
 file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
-echo
-unzip $file
+echo; unzip $file
 newCSV=$( ls | grep 82713_brewmaster*.csv )
-echo
-echo "Moving $newCSV to brewmaster.csv"
+echo; echo "Moving $newCSV to brewmaster.csv"
 mv $newCSV brewmaster.csv
 echo
 
-# This displays the first column of our unzipped file. It is a bit of a mess, but it 
-# gets the job done..Look for the brew name you used when saving <name> in the Brewmaster
-# app
-echo -e $( grep \" -i brewmaster.csv | awk '{print $1}' )
-echo
-read -p "Please type a string common to each brew you want to write data for: " commonStr
-echo
+# Displays the brew names matching user input. Presumably this naming convention is known by the user (i.e. shakN, costaN,
+# loN, etc..)
+read -p "Please enter a brew name from the app, disregarding numerical suffixes: " bestGuess
+# If there are missing brews ensure you have the latest export locally and that naming conventions in Acaia app are correct.
+echo; echo -e "Does this look correct?" '\n' $( grep -ow \"$bestGuess[0-9]\" -i brewmaster.csv ) 
+echo; echo -e '(y/n)? '
+read commonStr
 
-read -p "You Wrote '$commonStr'... Is That Correct? (y/n): " cont
+if [ $commonStr == "y" ]
+then
+	cont="y"
+	commonStr=$bestGuess
+else
+	# Likely this will not happen, an incorrect pass from bestGuess will likely cause the grep above to output blank
+	# space. 
+	echo; read -p "Please type a string common to each brew name: " commonStr
+fi
+
+echo; read -p "You Wrote '$commonStr'... Is That Correct? (y/n): " cont
 
 if [ $cont == "y" ]
 then
@@ -39,31 +47,26 @@ then
 				echo -e $chosenBrew > $brewDataFile.csv
 				# Sets a variable for sed manipulation later
 				toFormat=$brewDataFile.csv
-				echo
-				break;;
+				echo; break;;
 			*)
 				# Re-Write the appriopriate file to include the new log
 				echo -e $chosenBrew > $choice
 				# Variable for sed manipulation
 				toFormat=$choice
-				echo
-				break;;
+				echo; break;;
 		esac
 	done
-	echo
 
 	# Auto formats each brew onto a new line, otherwise the data comes out as one long line regardless how many brews 
 	# you have matching the given string.
-	echo "Auto-formatting $toFormat file..."
+	echo; echo "Auto-formatting $toFormat file..."
 	sed -i "s/\"*\"\,\"$commonStr*/\n\"$commonStr/g" $toFormat
 	sed -i 1,1d $toFormat
-	echo
-	echo "You may now run brewAnalysis.py"
+	echo; echo "You may now run brewAnalysis.py"
 	echo
 else
 	# If you messed up, enter anything but 'y' when prompted to exit this script.
-	echo
-	echo Please Run This Script Again...
+	echo; echo Please Run This Script Again...
 	echo
 fi
 # Your new file can now be read in correctly by brewAnalysis.py

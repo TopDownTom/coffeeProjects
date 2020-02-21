@@ -27,7 +27,7 @@ for a,files in enumerate(dataFiles):
 print()
 userChoice = int(input("Please select a number from above for which brew you want to plot: "))
 print()
-print("Running file on {}...".format(dataFiles[userChoice]))
+print("Running brewAnalysis on {}...".format(dataFiles[userChoice]))
 
 # Define the brew data 
 brewData = np.array(pd.read_csv("{}".format(dataFiles[userChoice]), header=None))
