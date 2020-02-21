@@ -11,7 +11,7 @@ echo
 # Displays the brew names matching user input. Presumably this naming convention is known by the user (i.e. shakN, costaN,
 # loN, etc..)
 read -p "Please enter a brew name from the app, disregarding numerical suffixes: " bestGuess
-# If there are missing brews ensure you have the latest export locally and that naming conventions in Acaia app are correct.
+# If there are missing brews ensure you have the latest export locally and that naming conventions in Acaia app are correct
 echo; echo -e "Does this look correct?" '\n' $( grep -ow \"$bestGuess[0-9]\" -i brewmaster.csv ) 
 echo; echo -e '(y/n)? '
 read commonStr
@@ -24,9 +24,10 @@ else
 	# Likely this will not happen, an incorrect pass from bestGuess will likely cause the grep above to output blank
 	# space. 
 	echo; read -p "Please type a string common to each brew name: " commonStr
+	# Verify commonStr was written correctly, if not answering 'n' will exit the script
+	echo; read -p "You Wrote '$commonStr'... Is That Correct? (y/n): " cont
 fi
 
-echo; read -p "You Wrote '$commonStr'... Is That Correct? (y/n): " cont
 
 if [ $cont == "y" ]
 then
