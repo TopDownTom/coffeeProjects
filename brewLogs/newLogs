@@ -70,4 +70,4 @@ else
 	echo; echo Please Run This Script Again...
 	echo
 fi
-# Your new file can now be read in correctly by brewAnalysis.py
+# Your new or updated file can now be read in correctly by brewAnalysis.py
