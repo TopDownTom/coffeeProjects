@@ -4,10 +4,27 @@
 file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
 echo; unzip $file
 
+dir=($( ls -d */ ))
+
+select dir in "${dir[@]}" Current;
+do
+	case $dir in
+		Current)
+			newDir=$PWD
+#			echo $PWD
+			break;;
+		*)
+			newDir=$PWD/$dir
+			newDir=${newDir%/}
+			break;;
+	esac
+done
+
 newCSV=$( ls | grep 82713_brewmaster*.csv )
-echo; echo "Moving $newCSV to brewmaster.csv"
-mv $newCSV brewmaster.csv; chmod 644 brewmaster.csv
-echo
+echo $newCSV
+echo; echo "Moving $newCSV to $newDir"
+mv $newCSV $newDir/brewmaster.csv; chmod 644 $newDir/brewmaster.csv
+echo; cd $newDir
 
 # Displays the brew names matching user input. Presumably this naming convention is known by the user (i.e. shakN, costaN,
 # loN, etc..)

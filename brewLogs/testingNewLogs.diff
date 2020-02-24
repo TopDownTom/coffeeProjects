@@ -1,0 +1,14 @@
+--- newLogs	2020-02-21 03:58:56.001237919 -0500
++++ newLogsTesting	2020-02-24 03:10:53.429505325 -0500
+@@ -3,9 +3,10 @@
+ # First, unzip the exported data from Acaia
+ file=$( ls *.zip | dmenu -l 5 -p "Please select which to unzip: " )
+ echo; unzip $file
++
+ newCSV=$( ls | grep 82713_brewmaster*.csv )
+ echo; echo "Moving $newCSV to brewmaster.csv"
+-mv $newCSV brewmaster.csv
++mv $newCSV brewmaster.csv; chmod 644 brewmaster.csv
+ echo
+ 
+ # Displays the brew names matching user input. Presumably this naming convention is known by the user (i.e. shakN, costaN,
