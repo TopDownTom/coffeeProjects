@@ -13,8 +13,21 @@ dataFiles=[]
 brewDurationSec=[]
 brewDurationMin=[]
 massOverTime=[]
+dirs=[]
 
-# Find data files in $PWD of .csv filetype
+for d in os.listdir('.'):
+    if os.path.isdir(d):
+        dirs.append(d)
+
+for a, dir in enumerate(dirs):
+    print('{} {}'.format(a, dirs[a]))
+directoryChoice = int(input("Please Select A Number From Above For Which Directory Your Brew Data Is Stored In: "))
+print()
+print('Switching to directory "{}"...'.format(dirs[directoryChoice]))
+
+os.chdir(dirs[directoryChoice])
+
+print('The brew files in this directory are: ')
 for file in os.listdir("."):
     if file.endswith(".csv"):
         dataFiles.append(file)
@@ -52,16 +65,17 @@ for a in range(0,len(brewData)):
     ax.set_xlabel("Time (s)")
     ax.set_ylabel("Mass (g)")
     ax.set_title("Mass vs. Time - {}".format(dataFiles[userChoice]))
+    ax.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
     ax.legend()
 
 
-    textstr = '\n'.join((
-        'brew times: ' '\n',
-        'brew {} - {}s'.format(len(brewData)-a,brewTimes)
-        ))
-
-    ax.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
-    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
+#    textstr = '\n'.join((
+#        'brew times: ' '\n',
+#        'brew {} - {}s'.format(len(brewData)-a,brewTimes)
+#        ))
+#
+#    ax.plot(brewDurationSec[a],massOverTime[a],label = "Brew {}".format(len(brewData)-a)) 
+#    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 
 
 
