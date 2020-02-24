@@ -15,18 +15,23 @@ brewDurationMin=[]
 massOverTime=[]
 dirs=[]
 
+# Find directories in $PWD and append them to a list of directories
 for d in os.listdir('.'):
     if os.path.isdir(d):
         dirs.append(d)
 
+# List enumerated directories for user selection. In the case of multiple pour approaches, each brew will have a correct
+# directory
 for a, dir in enumerate(dirs):
     print('{} {}'.format(a, dirs[a]))
 directoryChoice = int(input("Please Select A Number From Above For Which Directory Your Brew Data Is Stored In: "))
 print()
-print('Switching to directory "{}"...'.format(dirs[directoryChoice]))
 
+# Change into selected directory
+print('Switching to directory "{}"...'.format(dirs[directoryChoice]))
 os.chdir(dirs[directoryChoice])
 
+# List the brew files in this diectory
 print('The brew files in this directory are: ')
 for file in os.listdir("."):
     if file.endswith(".csv"):
