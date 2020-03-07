@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.29)  7 MAR 2020 01:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Arch Linux) (preloaded format=pdflatex 2020.2.29)  7 MAR 2020 02:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -442,151 +442,153 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
 [2 <./preAdjustmentData/IMG_20190831_132715.jpg> <./postAdjustmentData/IMG_2019
 1005_144811062.jpg>]
-Overfull \hbox (48.76324pt too wide) in paragraph at lines 68--76
-[][]
+Overfull \hbox (48.76324pt too wide) in paragraph at lines 75--75
+[][] 
  []
 
 
-LaTeX Warning: Reference `fig:ppostAdjustmentGraph' on page 3 undefined on inpu
-t line 79.
+Underfull \hbox (badness 2050) in paragraph at lines 79--80
+[]\OT1/cmr/m/n/10 The av-er-age val-ues and lin-ear re-gres-sion were
+ []
 
-<preAdjustmentAverage_DiameterPlot.png, id=59, 462.3101pt x 346.82336pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
+
+ []
+
+<preAdjustmentAverage_DiameterPlot.png, id=60, 462.3101pt x 346.82336pt>
 File: preAdjustmentAverage_DiameterPlot.png Graphic file (type png)
 <use preAdjustmentAverage_DiameterPlot.png>
 Package pdftex.def Info: preAdjustmentAverage_DiameterPlot.png  used on input l
-ine 81.
+ine 82.
 (pdftex.def)             Requested size: 236.84843pt x 177.68726pt.
-<postAdjustmentAverage_DiameterPlot.png, id=61, 462.3101pt x 346.82336pt>
+<postAdjustmentAverage_DiameterPlot.png, id=62, 462.3101pt x 346.82336pt>
 File: postAdjustmentAverage_DiameterPlot.png Graphic file (type png)
 <use postAdjustmentAverage_DiameterPlot.png>
 Package pdftex.def Info: postAdjustmentAverage_DiameterPlot.png  used on input 
-line 84.
+line 85.
 (pdftex.def)             Requested size: 236.84843pt x 177.68726pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+
+ []
+
+
+Underfull \hbox (badness 2245) in paragraph at lines 93--94
 []\OT1/cmr/m/n/10 The great-est im-prove-ments pre-adjustment and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--95
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
 
  []
 
 [3 <./preAdjustmentAverage_DiameterPlot.png> <./postAdjustmentAverage_DiameterP
 lot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 []$\OT1/cmtt/m/n/10 https : / / coffeeadastra . com / 2019 / 04 / 07 /
  []
 
 
-Overfull \hbox (61.649pt too wide) in paragraph at lines 105--117
+Overfull \hbox (61.649pt too wide) in paragraph at lines 106--118
 \OT1/cmtt/m/n/10 an-[]app-[]to-[]measure-[]your-[]coffee-[]grind-[]size-[]distr
 ibution-[]2/$[] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 []$\OT1/cmtt/m/n/10 https : / / github . com / jgagneastro /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 \OT1/cmtt/m/n/10 coffeegrindsize / blob / master / coffeegrindsize .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 []$\OT1/cmtt/m/n/10 https : / / github . com / jgagneastro /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 \OT1/cmtt/m/n/10 coffeegrindsize / blob / master / Help / coffee _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 []$\OT1/cmtt/m/n/10 https : / / docs . scipy . org / doc / scipy / reference /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--117
+Underfull \hbox (badness 10000) in paragraph at lines 106--118
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 119.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 120.
 [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 119.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 120.
  (build/quantitative-assessment-of-burr-alignment.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 119.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 119.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 120.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 120.
 Package rerunfilecheck Info: File `quantitative-assessment-of-burr-alignment.ou
 t' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 119.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 120.
  ) 
 Here is how much of TeX's memory you used:
- 6783 strings out of 492167
- 96752 string characters out of 6131558
- 200309 words of memory out of 5000000
- 11050 multiletter control sequences out of 15000+600000
+ 6780 strings out of 492167
+ 96691 string characters out of 6131558
+ 200279 words of memory out of 5000000
+ 11047 multiletter control sequences out of 15000+600000
  12485 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 31i,7n,28p,1196b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,10n,28p,1196b,320s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fonts/type1/public
@@ -599,10 +601,10 @@ ist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1
 /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 Output written on build/quantitative-assessment-of-burr-alignment.pdf (4 pages,
- 6628026 bytes).
+ 6627787 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
+ 141 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  17 named destinations out of 1000 (max. 500000)
  69 words of extra memory for PDF output out of 10000 (max. 10000000)
 

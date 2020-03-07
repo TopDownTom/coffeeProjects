@@ -64,34 +64,35 @@ CSV files generated from coffeegrindsize were passed into the supplementary code
 Once all settings were analyzed the Python module Scipy.curve\_ fit[6] was used to calculate a linear regression through these average values. The parameters follow the general form: $$grindSize = A*grindSetting + B$$.
 
 \begin{center}
-\begin{table}[h!]
-\begin{tabular}{ l | c | c | r |  }
+\begin{table}[h]
+\resizebox{.83\columnwidth}{!}{ \begin{minipage}{\columnwidth}
+\begin{tabular}{|r|c|c|r|}
 \hline			
   & Slope (A) & Intercept (B) [mm] & R2 \\ \hline
 Pre-Adjustmment & 0.89 +/- .041 & .26 +/- .006 & .96 \\  \hline
-Post-Adjustment & 0.068 +/- .022 & .31 +/- 0 .0032 & .98 \\
-\hline
+Post-Adjustment & 0.068 +/- .022 & .31 +/- 0 .0032 & .98 \\ \hline
 \end{tabular}
-\label{fig:linearParameterTable}
+\end{minipage} }
 \end{table}
 \end{center}
 
-The average values and linear regression were plotted against grind setting, shown below in Figures \ref{fig:preAdjustmentGraph} and \ref{fig:ppostAdjustmentGraph}.
-\begin{center}\begin{figure}[h!]
-\includegraphics[width=\columnwidth]{preAdjustmentAverage_DiameterPlot.png}\caption{Pre-Adjustment Plot}\label{fig:preAdjustmentGraph}\end{figure}\end{center}
+The average values and linear regression were plotted against grind setting, shown below in Figures \ref{fig:preAdjustmentGraph} and \ref{fig:postAdjustmentGraph}.\\
 
-\begin{center}\begin{figure}[h!]
+\begin{center}\begin{figure}[h]
+\includegraphics[width=\columnwidth]{preAdjustmentAverage_DiameterPlot.png}\caption{Pre-Adjustment Plot}\label{fig:preAdjustmentGraph}\end{figure}
+
+\begin{figure}[h]
 \includegraphics[width=\columnwidth]{postAdjustmentAverage_DiameterPlot.png}\caption{Post-Adjustment Plot}\label{fig:postAdjustmentGraph}\end{figure}\end{center}
 
-
 \section{Results Analysis}
+
 An additional factor indicating the grinder needed adjustment was an audible skipping sound if the burrs were made to touch just below grind setting one. The burrs should not touch to begin with, and if they do should produce a continuous rubbing sound. Instead the sound indicated the burr faces were not perfectly parallel. \\
 
 After adjusting and aligning the burrs a test sample was run through the grinder and two observations were made. Firstly, once the primary mass of coffee was ground, the duration residual particles remained in the grinding chamber was noticeably reduced. No time was measured prior to adjustment so we are unable to quantify this change exactly. Second, when adjusting to just below grind setting one[4], the burrs made a subtle continuous rubbing sound instead of the skipping sound heard pre-adjustment. \\
 
-The greatest improvements pre-adjustment and post-adjustment are noticeable in the highest and lowest grind settings shown in Figures 4 and 5. Grind settings one through four pre-adjustment show little to no grind-adjustment resolution with one through three having nearly the same value and four only slightly coarser. Grind settings two and three have the same average value yet different left and right standard deviations, perhaps indicative of the variable extraction we tasted. At the high end grind settings ten and eleven pre-adjustment have much higher average changes from their previous settings, $\delta=0.12$ and $0.14$ respectively, as well as a much larger boulders production in setting eleven compared to post-adjustment.\\
+The greatest improvements pre-adjustment and post-adjustment are noticeable in the highest and lowest grind settings shown in Figures \ref{fig:preAdjustmentGraph} and \ref{fig:postAdjustmentGraph}. Grind settings one through four pre-adjustment show little to no grind-adjustment resolution with one through three having nearly the same value and four only slightly coarser. Grind settings two and three have the same average value yet different left and right standard deviations, perhaps indicative of the variable extraction we tasted. At the high end grind settings ten and eleven pre-adjustment have much higher average changes from their previous settings, $\Delta=0.12$ and $0.14$ respectively, as well as a much larger boulders production in setting eleven compared to post-adjustment.\\
 
-Linearity also increased post-adjustment as seen by the tighter grouping in Figure 5 as well as the higher $R^2$ value shown in Table 1. Left and right standard deviations decreased in some grind settings but increased in others, however overall there is still more spread in grind size than anticipated. \\
+Linearity also increased post-adjustment as seen by the tighter grouping in Figure \ref{fig:postAdjustmentGraph} as well as the higher $R^2$ value shown in Table 1. Left and right standard deviations decreased in some grind settings but increased in others, however overall there is still more spread in grind size than anticipated. \\
 
 \section{Conclusion}
 
@@ -102,7 +103,7 @@ This first project provided guidance how grind samples should be taken in future
 If you have any comments, questions, or reflections please email me at \url{frothGoth@protonmail.com}
 
 \section{References}
-(1) J Gagne\'\ s Blog about coffeegrindsize\\
+(1) J Gagne's Blog about coffeegrindsize\\
 \url{https://coffeeadastra.com/2019/04/07/an-app-to-measure-your-coffee-grind-size-distribution-2/}\\\\
 (2) Coffeegrindsize source Code\\
 \url{https://github.com/jgagneastro/coffeegrindsize/blob/master/coffeegrindsize.py}\\\\
