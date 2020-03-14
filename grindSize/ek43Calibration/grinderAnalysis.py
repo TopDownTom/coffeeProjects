@@ -17,6 +17,7 @@ def main(N,preOrPost,smallestIncrement,coffeeCellSize,whichInformation):
     grindSetting=np.arange(1,N+1)
     for a in range(1,N+1): # need to start at 1 because filenames are setting1 - settingEnd
         # import each file, list the values, then change the lists into arrays
+        # when creating these files in the app I save each setting as setting1, setting2, etc.
         valuesArray = np.array(pd.read_csv("{}AdjustmentData/setting%d_stats.csv".format(preOrPost) % a ))
         
         # get the value from each stats column in the order:  '', avg_diam, std_diam, avg_surface, std_surface, efficiency, quality
